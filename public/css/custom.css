@@ -1,0 +1,60 @@
+.profile-greeting{
+    background-image: url(../assets/img/bg.jpg);
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;   
+}
+
+.profile-greeting-width{
+    max-width: 100%;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 100%;
+}
+
+.page-wrapper.modern-sidebar.compact-wrapper .page-body-wrapper header.main-nav .main-navbar .nav-menu{
+    height: 100vh !important;
+}
+
+@media (max-width: 1440px) {
+    .page-wrapper.modern-sidebar.compact-wrapper .page-body-wrapper header.main-nav .main-navbar .nav-menu{
+        height: 100vh !important;
+    }
+    .page-wrapper.compact-wrapper .page-body-wrapper header.main-nav{
+        top: 105px !important;
+    }
+
+    .page-wrapper.compact-wrapper .page-body-wrapper header.main-nav .main-navbar .nav-menu{
+        height: 100vh !important;
+    }
+
+    .page-main-header .main-header-right .main-header-left{
+        justify-content: left !important;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .logo-mobile{
+        width: 90px !important;
+        height: auto !important;
+    }
+    .loginBtnMobile{
+        display: flex;
+        justify-content: center;
+    }
+
+    .page-wrapper.compact-wrapper .page-body-wrapper header.main-nav{
+        top: 156px !important;
+    }
+}
+
+
+.mainnav{
+    margin-top: 10px;
+    height: 100vh !important;
+}
+
+#logoutBtn:hover{
+    background-color: #d22d3d;
+}
