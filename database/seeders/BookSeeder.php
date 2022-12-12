@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Book;
+use App\Models\BookCategory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,44 +16,48 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('books')->insert([
-            "title" => "Northanger Abbey", "author" => "Austen, Jane", "year" => 1814, "avail_stock" => rand(4, 300), "total_stock" => 300
+        Book::create([
+            "title" => "Northanger Abbey", "author" => "Austen, Jane", "category" => "1", "year" => 1814, "avail_stock" => rand(4, 300), "total_stock" => 300
         ]);
-        DB::table('books')->insert([
-            "title" => "War and Peace", "author" => "Tolstoy, Leo", "year" => 1865, "avail_stock" => rand(4, 300), "total_stock" => 300
+        Book::create([
+            "title" => "War and Peace", "author" => "Tolstoy, Leo", "category" => "1", "year" => 1865, "avail_stock" => rand(4, 300), "total_stock" => 300
         ]);
-        DB::table('books')->insert([
-            "title" => "Anna Karenina", "author" => "Tolstoy, Leo", "year" => 1875, "avail_stock" => rand(4, 300), "total_stock" => 300
+        Book::create([
+            "title" => "Anna Karenina", "author" => "Tolstoy, Leo", "category" => "1", "year" => 1875, "avail_stock" => rand(4, 300), "total_stock" => 300
         ]);
-        DB::table('books')->insert([
-            "title" => "Mrs. Dalloway", "author" => "Woolf, Virginia", "year" => 1925, "avail_stock" => rand(4, 300), "total_stock" => 300
+        Book::create([
+            "title" => "Mrs. Dalloway", "author" => "Woolf, Virginia", "category" => "1", "year" => 1925, "avail_stock" => rand(4, 300), "total_stock" => 300
         ]);
-        DB::table('books')->insert([
-            "title" => "The Hours", "author" => "Cunnningham, Michael", "year" => 1999, "avail_stock" => rand(4, 300), "total_stock" => 300
+        Book::create([
+            "title" => "The Hours", "author" => "Cunnningham, Michael", "category" => "1", "year" => 1999, "avail_stock" => rand(4, 300), "total_stock" => 300
         ]);
-        DB::table('books')->insert([
-            "title" => "Huckleberry Finn", "author" => "Twain, Mark", "year" => 1865, "avail_stock" => rand(4, 300), "total_stock" => 300
+        Book::create([
+            "title" => "Huckleberry Finn", "author" => "Twain, Mark", "category" => "1", "year" => 1865, "avail_stock" => rand(4, 300), "total_stock" => 300
         ]);
-        DB::table('books')->insert([
-            "title" => "Bleak House", "author" => "Dickens, Charles", "year" => 1870, "avail_stock" => rand(4, 300), "total_stock" => 300
+        Book::create([
+            "title" => "Bleak House", "author" => "Dickens, Charles", "category" => "1", "year" => 1870, "avail_stock" => rand(4, 300), "total_stock" => 300
         ]);
-        DB::table('books')->insert([
-            "title" => "Tom Sawyer", "author" => "Twain, Mark", "year" => 1862, "avail_stock" => rand(4, 300), "total_stock" => 300
+        Book::create([
+            "title" => "Tom Sawyer", "author" => "Twain, Mark", "category" => "1", "year" => 1862, "avail_stock" => rand(4, 300), "total_stock" => 300
         ]);
-        DB::table('books')->insert([
-            "title" => "A Room of One's Own", "author" => "Woolf, Virginia", "year" => 1922, "avail_stock" => rand(4, 300), "total_stock" => 300
+        Book::create([
+            "title" => "A Room of One's Own", "author" => "Woolf, Virginia", "category" => "1", "year" => 1922, "avail_stock" => rand(4, 300), "total_stock" => 300
         ]);
-        DB::table('books')->insert([
-            "title" => "Harry Potter", "author" => "Rowling, J.K.", "year" => 2000, "avail_stock" => rand(4, 300), "total_stock" => 300
+        Book::create([
+            "title" => "Harry Potter", "author" => "Rowling, J.K.", "category" => "1", "year" => 2000, "avail_stock" => rand(4, 300), "total_stock" => 300
         ]);
-        DB::table('books')->insert([
-            "title" => "One Hundred Years of Solitude", "author" => "Marquez", "year" => 1967, "avail_stock" => rand(4, 300), "total_stock" => 300
+        Book::create([
+            "title" => "One Hundred Years of Solitude", "author" => "Marquez", "category" => "1", "year" => 1967, "avail_stock" => rand(4, 300), "total_stock" => 300
         ]);
-        DB::table('books')->insert([
-            "title" => "Hamlet, Prince of Denmark", "author" => "Shakespeare", "year" => 1603, "avail_stock" => rand(4, 300), "total_stock" => 300
+        Book::create([
+            "title" => "Hamlet, Prince of Denmark", "author" => "Shakespeare", "category" => "1", "year" => 1603, "avail_stock" => rand(4, 300), "total_stock" => 300
         ]);
-        DB::table('books')->insert([
-            "title" => "Lord of the Rings", "author" => "Tolkien, J.R.", "year" => 1937, "avail_stock" => rand(4, 300), "total_stock" => 300
+        Book::create([
+            "title" => "Lord of the Rings", "author" => "Tolkien, J.R.", "category" => "1", "year" => 1937, "avail_stock" => rand(4, 300), "total_stock" => 300
+        ]);
+
+        BookCategory::create([
+            "title" => "adventure"
         ]);
     }
 }

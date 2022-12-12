@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Book;
+use Throwable;
+
 use Illuminate\Http\Request;
-use App\Http\Requests\BookRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\BookCategory as Category;
 
-class BooksController extends Controller
+class BooksCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +18,8 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
-        return view('app.admin.books.index', ['books' => $books]);
+        $categories = Category::all();
+        return view('app.admin.book-category.index', compact('categories'));
     }
 
     /**
@@ -28,7 +29,7 @@ class BooksController extends Controller
      */
     public function create()
     {
-        return view('app.admin.books.create');
+        return view('app.admin.book-category.create');
     }
 
     /**
@@ -37,23 +38,20 @@ class BooksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BookRequest $request)
+    public function store(Request $request)
     {
-        $request->validated();
+        $validated = $request->validate([
+            'title' => ['required', 'min:3'],
+        ]);
 
         try {
             DB::beginTransaction();
 
             $data = [
                 'title' => $request->title,
-                'author' => $request->author,
-                'category' => $request->category,
-                'year' => $request->year,
-                'avail_stock' => $request->avail_stock,
-                'total_stock' => $request->total_stock,
             ];
 
-            Book::Create($data);
+            Category::create($data);
 
             DB::commit();
 
@@ -70,27 +68,29 @@ class BooksController extends Controller
         if($request->has('another')){
             return redirect()->back();
         }
-        return redirect(route('books.index'));
+        return redirect(route('book-category.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Book  $book
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show($id)
     {
-        return view('app.admin.books.show', ['book' => $book]);
+        $category = Category::where('id', $id)->first();
+        
+        return view('app.admin.book-category.show', compact('category'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Book  $book
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book)
+    public function edit($id)
     {
         //
     }
@@ -99,26 +99,23 @@ class BooksController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Book  $book
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BookRequest $request, Book $book)
+    public function update(Request $request, $id)
     {
-        $request->validated();
+        $validated = $request->validate([
+            'title' => ['required', 'min:3'],
+        ]);
 
         try {
             DB::beginTransaction();
 
             $data = [
                 'title' => $request->title,
-                'author' => $request->author,
-                'category' => $request->category,
-                'year' => $request->year,
-                'avail_stock' => $request->avail_stock,
-                'total_stock' => $request->total_stock,
             ];
 
-            Book::where('id', $book->id)->update($data);
+            Category::where('id', $id)->update($data);
 
             DB::commit();
 
@@ -138,12 +135,18 @@ class BooksController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Book  $book
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book)
+    public function destroy($id)
     {
-        $book->delete();
+        $data = Category::where('id', $id)->first();
+        $books = $data->book;
+        foreach($books as $item){
+            $item->delete();
+        }
+        
+        $data->delete();
 
         return redirect()->back()->withInput(['success', 'Success']);
     }

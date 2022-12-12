@@ -54,7 +54,11 @@ class RegisterController extends Controller
             'lname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'terms' => ['required'],
+        ], [
+            'terms.required' => 'You need to agree in the Privacy And Terms',
         ]);
+        
     }
 
     /**

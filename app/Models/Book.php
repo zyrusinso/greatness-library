@@ -20,4 +20,14 @@ class Book extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the user that owns the Book
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(BookCategory::class);
+    }
 }

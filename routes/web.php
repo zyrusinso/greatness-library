@@ -8,6 +8,7 @@ if (App::environment('production')) {
 }
 
 Route::get('/index', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+Route::get('/privacy-and-terms', [App\Http\Controllers\HomeController::class, 'privacyAndTerms'])->name('privacy-terms');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
@@ -32,6 +33,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('/borrow-books', App\Http\Controllers\Admin\MonitorController::class); // Borrow Books
         Route::resource('/book-return', App\Http\Controllers\Admin\ReturnController::class); // Book Return
         Route::resource('/books', App\Http\Controllers\Admin\BooksController::class);
+        Route::resource('/book-category', App\Http\Controllers\Admin\BooksCategoryController::class);
         Route::post('monitor/{id}/mark-update', [App\Http\Controllers\Admin\MonitorController::class, 'markUpdate'])->name('monitor.mark-update');
     });
 });

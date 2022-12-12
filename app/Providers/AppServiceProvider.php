@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $project_title = '| Greatness Library';
         View::share('title', $project_title);   
 
-        if (env('APP_ENV') !== 'local') {
+        if (env('APP_ENV') == 'production') {
             $url->forceScheme('https');
         }
     }

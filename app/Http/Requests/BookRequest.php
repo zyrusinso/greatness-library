@@ -26,6 +26,7 @@ class BookRequest extends FormRequest
         return [
             'title' => ['required'],
             'author' => ['required'],
+            'category' => ['required'],
             'year' => ['required'],
             'avail_stock' => ['required'],
             'total_stock' => ['required'],

@@ -75,6 +75,17 @@
 	                                <input class="form-control" type="password" name="password_confirmation" placeholder="*********" />
 	                            </div>
 	                        </div>
+
+							<div class="form-group">
+								<div class="checkbox">
+									<input id="checkbox1" type="checkbox" name="terms">
+									<label class="text-muted" for="checkbox1">Agree with <a href="{{ route('privacy-terms') }}">Privacy and Terms</a></label>
+									@error('terms')
+										<div class="invalid-feedback" style="display: block !important">{{ $message }}</div>
+									@enderror
+								</div>
+							</div>
+
 	                        <div class="form-group">
 	                            <button class="btn btn-primary btn-block" type="submit">Create Account</button>
 	                        </div>

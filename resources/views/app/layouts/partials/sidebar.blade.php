@@ -82,6 +82,9 @@
                             <a class="nav-link menu-title link-nav {{routeActive('books.index')}}" href="{{ route('books.index') }}"><i data-feather="book"></i><span>Book List</span></a>
                         </li>
                         <li class="dropdown">
+                            <a class="nav-link menu-title link-nav {{routeActive('book-category.index')}}" href="{{ route('book-category.index') }}"><i data-feather="server"></i><span>Book Category</span></a>
+                        </li>
+                        <li class="dropdown">
                             <a class="nav-link menu-title link-nav {{routeActive('visitor-logs.index')}}" href="{{ route('visitor-logs.index') }}"><i data-feather="edit"></i><span>Borrowers</span></a>
                         </li>
 

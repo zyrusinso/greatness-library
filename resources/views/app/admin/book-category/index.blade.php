@@ -9,9 +9,9 @@
 @section('content')
 @component('app.components.admin_breadcrumb')
 @slot('breadcrumb_title')
-<h3>Books</h3>
+<h3>Book Categories</h3>
 @endslot
-<li class="breadcrumb-item active">Books</li>
+<li class="breadcrumb-item active">Book Categories</li>
 @endcomponent
 
 <div class="container-fluid">
@@ -19,8 +19,8 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h5>Books</h5>
-                    <a class="btn btn-primary" href="{{ route('books.create') }}">Add</a>
+                    <h5>Book Categories</h5>
+                    <a class="btn btn-primary" href="{{ route('book-category.create') }}">Add</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -28,41 +28,25 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Title</th>
-                                    <th>Author</th>
-                                    <th>Category</th>
-                                    <th>Year</th>
-                                    <th>Avail Stock</th>
+                                    <th>category</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if ($books->count() > 0)
-                                    @foreach ($books as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->title }}</td>
-                                            <td>{{ $item->author }}</td>
-                                            <td>{{ \App\Models\BookCategory::getCategoryTitle($item->category) }}</td>
-                                            <td>{{ $item->year }}</td>
-                                            <td>{{ $item->avail_stock }}</td>
-                                            <td width="30%">
-                                                <a href="{{ route('books.show', $item->id) }}" class="btn btn-secondary">Edit</a>
-                                                <a href="#" class="btn btn-danger deleteBtn" data-id="{{ $item->id }}" onclick="deleteData(this)">Delete</a>
-                                            </td>
-                                            <form id="deleteDataForm{{ $item->id }}" action="{{ route('books.destroy', $item->id) }}" method="POST" class="d-none" onsubmit="event.preventDefault();">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
-                                        </tr>
-                                    @endforeach
-                                @else
+                                @foreach ($categories as $item)
                                     <tr>
-                                        <th class="text-center text-white" colspan="10" style="background-color: #111727;">
-                                            No Data Found
-                                        </th>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->title }}</td>
+                                        <td width="30%">
+                                            <a href="{{ route('book-category.show', $item->id) }}" class="btn btn-secondary">Edit</a>
+                                            <a href="#" class="btn btn-danger deleteBtn" data-id="{{ $item->id }}" onclick="deleteData(this)">Delete</a>
+                                        </td>
+                                        <form id="deleteDataForm{{ $item->id }}" action="{{ route('book-category.destroy', $item->id) }}" method="POST" class="d-none" onsubmit="event.preventDefault();">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                     </tr>
-                                @endif
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -90,7 +74,7 @@
         var form = document.getElementById('deleteDataForm'+el.dataset.id);
         Swal.fire({
             title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            text: "All the books belongs to this category will delete!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

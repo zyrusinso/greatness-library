@@ -18,7 +18,7 @@ class Borrow extends Model
     /**
     * Get the user that owns the Borrow
     *
-    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    * @return \Illuminate\Database\Eloquent\Relations\hasOne
     */
     public function book()
     {

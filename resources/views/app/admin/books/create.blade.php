@@ -65,6 +65,19 @@
                                             <div class="invalid-feedback" style="display: block !important">{{ $message }}</div>
                                         @enderror
                                     </div>
+
+                                    <div class="mb-3 col-sm-6 offset-3">
+                                        <select name="category" class="form-control">
+                                            <label for="inputAddress5">Book Category</label>
+                                            <option value="">-- Select a Category --</option>
+                                            @foreach(App\Models\BookCategory::getAll() as $key => $value)
+                                                <option value="{{ $key }}" {{ (old('category') == $key)? 'selected' : '' }} >{{ $value }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category')
+                                            <div class="invalid-feedback" style="display: block !important">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </form>
                         </div>
