@@ -22,6 +22,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/borrow', [App\Http\Controllers\Admin\BorrowController::class, 'borrow'])->name('borrow');
     Route::view('/visitor', 'app.components.visitor')->name('visitor');
     Route::resource('/settings', App\Http\Controllers\SettingController::class);
+
+    Route::resource('/borrow-books', App\Http\Controllers\BorrowBooksController::class); // Borrow Books
 });
 
 // Success Borrowed
@@ -30,7 +32,7 @@ Route::get('/borrow/{borrowId}', [App\Http\Controllers\Admin\BorrowController::c
 Route::prefix('admin')->group(function () {
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
-        Route::resource('/borrow-books', App\Http\Controllers\Admin\MonitorController::class); // Borrow Books
+        
         Route::resource('/book-return', App\Http\Controllers\Admin\ReturnController::class); // Book Return
         Route::resource('/books', App\Http\Controllers\Admin\BooksController::class);
         Route::resource('/book-category', App\Http\Controllers\Admin\BooksCategoryController::class);

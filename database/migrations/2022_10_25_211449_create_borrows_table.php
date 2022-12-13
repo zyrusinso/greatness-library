@@ -16,15 +16,8 @@ class CreateBorrowsTable extends Migration
         Schema::create('borrows', function (Blueprint $table) {
             $table->id();
             $table->string('book_id')->nullable();
-            $table->string('remarks')->nullable();
-            $table->string('fname')->nullable();
-            $table->string('lname')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('email')->nullable();
-            $table->string('address')->nullable();
-            $table->string('postal')->nullable();
-            $table->string('stud_id')->nullable();
-            $table->string('course')->nullable();
+            $table->string('user_id')->nullable();
+            $table->string('status')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

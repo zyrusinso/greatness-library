@@ -18,13 +18,19 @@
                         <li class="dropdown">
                             <a class="nav-link menu-title link-nav {{routeActive('admin.dashboard')}}" href="{{ route('admin.dashboard') }}"><i data-feather="home"></i><span>Dashboard</span></a>
                         </li>
+
                         <li class="sidebar-main-title">
                             <div>
                                 <h6>Pages</h6>
                             </div>
                         </li>
                         
-                        
+                        <li class="dropdown">
+                            <a class="nav-link menu-title link-nav {{routeActive('borrow-books.create')}}" href="{{ route('borrow-books.create') }}"><i data-feather="book"></i><span>Borrow Books</span></a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="nav-link menu-title link-nav {{routeActive('book-return.index')}}" href="{{ route('book-return.index') }}"><i data-feather="log-in"></i><span>Book Return</span></a>
+                        </li>
 
                         <li class="sidebar-main-title">
                             <div>
