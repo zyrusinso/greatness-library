@@ -43,8 +43,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ \App\Models\Book::getBook($item->book_id)->isbn }}</td>
                                         <td>{{ \App\Models\User::getUser($item->user_id)->fname }} {{ \App\Models\User::getUser($item->user_id)->lname }}</td>
-                                        <td>{{ \App\Models\BookCategory::getCategoryTitle($item->category) }}</td>
                                         <td>{{ \Carbon\Carbon::parse($item->created_at)->format('M j Y') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->due_date)->format('M j Y') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
