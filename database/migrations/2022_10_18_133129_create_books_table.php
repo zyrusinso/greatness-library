@@ -19,8 +19,7 @@ class CreateBooksTable extends Migration
             $table->string('author')->nullable();
             $table->string('category')->nullable();
             $table->string('year')->nullable();
-            $table->string('avail_stock')->nullable();
-            $table->string('total_stock')->nullable();
+            $table->string('isbn')->nullable();
             $table->timestamps();
         });
     }

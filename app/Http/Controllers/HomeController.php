@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Borrow;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,7 +18,9 @@ class HomeController extends Controller
             return redirect(route('admin.dashboard'));
         }
 
-        return view('app.user.dashboard');
+        $borrows = Borrow::where('user_id', auth()->id())->get();
+
+        return view('app.user.dashboard', compact('borrows'));
     }
 
     public function privacyAndTerms()

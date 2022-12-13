@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Throwable;
+use App\Models\Book;
 use App\Models\Borrow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,11 +18,7 @@ class BorrowBooksController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->is_admin == 1){
-            $borrow = Borrow::all();
-        }else{
-            $borrow = Borrow::where('id', auth()->id())->get();
-        }
+        $borrow = Borrow::orderBy('id', 'DESC')->get();
 
         return view('app.dashboard.borrow-books.index', compact('borrow'));
     }
@@ -33,7 +30,9 @@ class BorrowBooksController extends Controller
      */
     public function create()
     {
-        return view('app.dashboard.borrow-books.create');
+        $books = Book::all();
+
+        return view('app.dashboard.borrow-books.create', compact('books'));
     }
 
     /**
@@ -46,13 +45,20 @@ class BorrowBooksController extends Controller
     {
         $request->validated();
 
+        $borrower = Borrow::where('user_id', auth()->id())->where('status', 'Lended')->get();
+        
+        if(count($borrower) >= 3){
+            return redirect()->back()->withErrors(['error' => 'Maximum borrowed book has reached!']);
+        }
+
         try {
             DB::beginTransaction();
 
             $data = [
                 'book_id' => $request->book,
                 'user_id' => auth()->id(),
-                'status' => 'Lended'
+                'status' => 'Lended',
+                'due_date' => now()->addDays(7)
             ];
 
             Borrow::create($data);

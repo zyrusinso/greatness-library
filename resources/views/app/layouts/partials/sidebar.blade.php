@@ -16,7 +16,7 @@
                         </li>
 
                         <li class="dropdown">
-                            <a class="nav-link menu-title link-nav {{routeActive('admin.dashboard')}}" href="{{ route('admin.dashboard') }}"><i data-feather="home"></i><span>Dashboard</span></a>
+                            <a class="nav-link menu-title link-nav {{routeActive('index')}}" href="{{ route('admin.dashboard') }}"><i data-feather="home"></i><span>Dashboard</span></a>
                         </li>
 
                         <li class="sidebar-main-title">
@@ -91,7 +91,7 @@
                             <a class="nav-link menu-title link-nav {{routeActive('book-category.index')}}" href="{{ route('book-category.index') }}"><i data-feather="server"></i><span>Book Category</span></a>
                         </li>
                         <li class="dropdown">
-                            <a class="nav-link menu-title link-nav {{routeActive('visitor-logs.index')}}" href="{{ route('visitor-logs.index') }}"><i data-feather="edit"></i><span>Borrowers</span></a>
+                            <a class="nav-link menu-title link-nav {{routeActive('borrowers.index')}}" href="{{ route('borrowers.index') }}"><i data-feather="edit"></i><span>Borrowers</span></a>
                         </li>
 
                         <li class="sidebar-main-title">

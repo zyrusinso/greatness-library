@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('balance')->nullable();
             $table->string('email')->unique();
             $table->string('is_admin', 5)->default(0)->nullable();
+            $table->string('is_verified', 20)->default(0)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

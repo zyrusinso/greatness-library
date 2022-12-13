@@ -9,9 +9,9 @@
 @section('content')
 @component('app.components.admin_breadcrumb')
 @slot('breadcrumb_title')
-<h3>Books</h3>
+<h3>Borrowers</h3>
 @endslot
-<li class="breadcrumb-item active">Books</li>
+<li class="breadcrumb-item active">Borrowers</li>
 @endcomponent
 
 <div class="container-fluid">
@@ -19,8 +19,8 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h5>Books</h5>
-                    <a class="btn btn-primary" href="{{ route('books.create') }}">Add</a>
+                    <h5>Borrowers</h5>
+                    <a class="btn btn-primary" href="{{ route('borrowers.create') }}">Add</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -28,41 +28,31 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Title</th>
-                                    <th>Author</th>
-                                    <th>Category</th>
-                                    <th>Year</th>
-                                    <th>Isbn</th>
+                                    <th>Borrower Name</th>
+                                    <th>Status</th>
+                                    <th>Date Verified</th>
+                                    <th>Date Registered</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if ($books->count() > 0)
-                                    @foreach ($books as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->title }}</td>
-                                            <td>{{ $item->author }}</td>
-                                            <td>{{ \App\Models\BookCategory::getCategoryTitle($item->category) }}</td>
-                                            <td>{{ $item->year }}</td>
-                                            <td>{{ $item->isbn }}</td>
-                                            <td width="30%">
-                                                <a href="{{ route('books.show', $item->id) }}" class="btn btn-secondary">Edit</a>
-                                                <a href="#" class="btn btn-danger deleteBtn" data-id="{{ $item->id }}" onclick="deleteData(this)">Delete</a>
-                                            </td>
-                                            <form id="deleteDataForm{{ $item->id }}" action="{{ route('books.destroy', $item->id) }}" method="POST" class="d-none" onsubmit="event.preventDefault();">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
-                                        </tr>
-                                    @endforeach
-                                @else
+                                @foreach ($borrowers as $item)
                                     <tr>
-                                        <th class="text-center text-white" colspan="10" style="background-color: #111727;">
-                                            No Data Found
-                                        </th>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ App\Models\User::getUser($item->user_id)->fname }} {{ App\Models\User::getUser($item->user_id)->lname }}</td>
+                                        <td>{{ $item->status }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->verified_at)->format('M j Y') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse(App\Models\User::getUser($item->user_id)->created_at)->format('M j Y') }}</td>
+                                        <td width="30%">
+                                            <a href="{{ route('borrowers.show', $item->id) }}" class="btn btn-secondary">Edit</a>
+                                            <a href="#" class="btn btn-danger deleteBtn" data-id="{{ $item->id }}" onclick="deleteData(this)">Delete</a>
+                                        </td>
+                                        <form id="deleteDataForm{{ $item->id }}" action="{{ route('borrowers.destroy', $item->id) }}" method="POST" class="d-none" onsubmit="event.preventDefault();">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
                                     </tr>
-                                @endif
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -33,7 +33,7 @@
                                     <th>Full Name</th>
                                     <th>Book Title</th>
                                     <th>Date Borrowed</th>
-                                    <th>Action</th>
+                                    <th>Due Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,15 +42,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ \App\Models\User::getUser($item->user_id)->fname }} {{ \App\Models\User::getUser($item->user_id)->lname }}</td>
                                         <td>{{ \App\Models\Book::getBook($item->book_id)->title }}</td>
-                                        <td>{{ $item->created_at }}</td>
-                                        <td width="30%">
-                                            <a href="{{ route('borrow-books.show', $item->id) }}" class="btn btn-secondary">Edit</a>
-                                            <a href="#" class="btn btn-danger deleteBtn" data-id="{{ $item->id }}" onclick="deleteData(this)">Delete</a>
-                                        </td>
-                                        <form id="deleteDataForm{{ $item->id }}" action="{{ route('borrow-books.destroy', $item->id) }}" method="POST" class="d-none" onsubmit="event.preventDefault();">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
+                                        <td>{{ \Carbon\Carbon::parse($item->created_at)->format('M j Y') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->due_date)->format('M j Y') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

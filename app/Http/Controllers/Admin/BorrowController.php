@@ -21,7 +21,9 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        return view('app.admin.borrow.index');
+        $books = Book::all();
+
+        return view('app.admin.borrow.index', compact('books'));
     }
 
     /**

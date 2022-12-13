@@ -17,20 +17,22 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-6 col-xl-6 col-lg-6">
-            <div class="card o-hidden border-0">
-                <div class="bg-danger b-r-4 card-body">
-                    <div class="media static-top-widget">
-                        <div class="align-self-center text-center"><i data-feather="dollar-sign"></i></div>
-                        <div class="media-body">
-                            <span class="m-0">Current Balance Fee</span>
-                            <h4 class="mb-0 counter">100</h4>
-                            <i class="icon-bg" data-feather="dollar-sign"></i>
+        @if (auth()->user()->is_admin != 1)
+            <div class="col-sm-6 col-xl-6 col-lg-6">
+                <div class="card o-hidden border-0">
+                    <div class="bg-danger b-r-4 card-body">
+                        <div class="media static-top-widget">
+                            <div class="align-self-center text-center"><i data-feather="dollar-sign"></i></div>
+                            <div class="media-body">
+                                <span class="m-0">Current Balance Fee</span>
+                                <h4 class="mb-0 counter">100</h4>
+                                <i class="icon-bg" data-feather="dollar-sign"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header text-center">

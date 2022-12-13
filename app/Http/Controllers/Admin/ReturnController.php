@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\ReturnBook;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ReturnController extends Controller
 {
@@ -14,7 +15,9 @@ class ReturnController extends Controller
      */
     public function index()
     {
-        return view('app.admin.return.index');
+        $returns = ReturnBook::all();
+
+        return view('app.admin.return.index', compact('returns'));
     }
 
     /**

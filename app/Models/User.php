@@ -17,12 +17,7 @@ class User extends Authenticatable
      *
      * @var string[]
      */
-    protected $fillable = [
-        'fname',
-        'lname',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,6 +41,30 @@ class User extends Authenticatable
     public static function getUser($id)
     {
         $data = static::where('id', $id)->first();
+
+        return $data;
+    }
+
+    public static function getAllUser()
+    {
+        $data = [];
+        $users = static::all();
+
+        foreach($users as $item){
+            $data += [$item->id => $item->fname.' '.$item->lname];
+        }
+
+        return $data;
+    }
+
+    public static function getUserNotVerified()
+    {
+        $data = [];
+        $users = static::where('is_verified', 0)->where('is_admin', 0)->get();
+
+        foreach($users as $item){
+            $data += [$item->id => $item->fname.' '.$item->lname];
+        }
 
         return $data;
     }

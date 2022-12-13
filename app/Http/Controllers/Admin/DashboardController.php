@@ -21,10 +21,10 @@ class DashboardController extends Controller
     {
         $visitors = VisitorLogs::all();
         $books = Book::all();
-        $borrow = Borrow::all();
+        $borrow = Borrow::latest()->take(10)->get();
         $monitor = Monitor::all();
         
-        return view('app.admin.dashboard', ['visitors' => $visitors, 'books' => $books, 'borrow' => $borrow, 'monitor' => $monitor]);
+        return view('app.admin.dashboard', ['visitors' => $visitors, 'books' => $books, 'borrows' => $borrow, 'monitor' => $monitor]);
     }
 
     /**

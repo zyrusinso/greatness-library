@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use Throwable;
-
+use App\Models\User;
+use App\Models\Borrower;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Models\BookCategory as Category;
+use App\Http\Requests\BorrowersRequest;
 
-class BooksCategoryController extends Controller
+class BorrowersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +20,9 @@ class BooksCategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('app.admin.book-category.index', compact('categories'));
+        $borrowers = Borrower::all();
+
+        return view('app.admin.borrowers.index', compact('borrowers'));
     }
 
     /**
@@ -29,7 +32,7 @@ class BooksCategoryController extends Controller
      */
     public function create()
     {
-        return view('app.admin.book-category.create');
+        return view('app.admin.borrowers.create');
     }
 
     /**
@@ -38,22 +41,31 @@ class BooksCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BorrowersRequest $request)
     {
-        $validated = $request->validate([
-            'title' => ['required', 'min:3', 'unique:book_categories'],
-        ], [
-            'title.unique' => 'This category is already exist!'
-        ]);
+        $request->validated();
 
         try {
             DB::beginTransaction();
 
             $data = [
-                'title' => $request->title,
+                'user_id' => $request->user_id,
+                'status' => 'Student',
+                'contact' => $request->contact,
+                'address' => $request->address,
+                'course' => $request->course,
+                'date_of_birth' => $request->date_of_birth,
+                'verified_at' => now(),
             ];
 
-            Category::create($data);
+            Borrower::create($data);
+
+            $userData = [
+                'is_verified' => 1,
+                'email_verified_at' => now(),
+            ];
+
+            User::where('id', $request->user_id)->update($userData);
 
             DB::commit();
 
@@ -70,7 +82,7 @@ class BooksCategoryController extends Controller
         if($request->has('another')){
             return redirect()->back();
         }
-        return redirect(route('book-category.index'));
+        return redirect(route('borrowers.index'));
     }
 
     /**
@@ -81,9 +93,9 @@ class BooksCategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::where('id', $id)->first();
-        
-        return view('app.admin.book-category.show', compact('category'));
+        $borrower = Borrower::where('id', $id)->first();
+
+        return view('app.admin.borrowers.show', compact('borrower'));
     }
 
     /**
@@ -104,20 +116,21 @@ class BooksCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BorrowersRequest $request, $id)
     {
-        $validated = $request->validate([
-            'title' => ['required', 'min:3'],
-        ]);
+        $request->validated();
 
         try {
             DB::beginTransaction();
 
             $data = [
-                'title' => $request->title,
+                'contact' => $request->contact,
+                'address' => $request->address,
+                'course' => $request->course,
+                'date_of_birth' => $request->date_of_birth,
             ];
 
-            Category::where('id', $id)->update($data);
+            Borrower::where('id', $id)->update($data);
 
             DB::commit();
 
@@ -142,14 +155,12 @@ class BooksCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $data = Category::where('id', $id)->first();
-        $books = $data->book;
-        foreach($books as $item){
-            $item->delete();
-        }
-        
-        $data->delete();
+        $borrower = Borrower::where('id', $id)->first();
+        $user = User::where('id', $borrower->user_id)->first();
 
-        return redirect()->back()->withInput(['success', 'Success']);
+        $user->update(['is_verified' => 0]);
+        $borrower->delete();
+
+        return redirect(route('borrowers.index'));
     }
 }
