@@ -25,7 +25,7 @@
                             <div class="align-self-center text-center"><i data-feather="dollar-sign"></i></div>
                             <div class="media-body">
                                 <span class="m-0">Current Balance Fee</span>
-                                <h4 class="mb-0 counter">100</h4>
+                                <h4 class="mb-0 counter">{{ $setting->balance ?? '0' }}</h4>
                                 <i class="icon-bg" data-feather="dollar-sign"></i>
                             </div>
                         </div>
