@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="mb-3 col-sm-6">
                                         <label for="date_of_birth">Date of Birth</label>
-                                        <input class="form-control" id="date_of_birth" type="date" value="{{ old('date_of_birth') }}" name="date_of_birth">
+                                        <input class="form-control" id="date_of_birth" type="date" value="{{ old('date_of_birth') }}" max="{{ new DateTime()->format('Y-m-d') }}" name="date_of_birth">
                                         @error('date_of_birth')
                                             <div class="invalid-feedback" style="display: block !important">{{ $message }}</div>
                                         @enderror

@@ -29,7 +29,7 @@
                             <a class="nav-link menu-title link-nav {{routeActive('borrow-books.create')}}" href="{{ route('borrow-books.create') }}"><i data-feather="book"></i><span>Borrow Books</span></a>
                         </li>
                         <li class="dropdown">
-                            <a class="nav-link menu-title link-nav {{routeActive('book-return.index')}}" href="{{ route('book-return.index') }}"><i data-feather="log-in"></i><span>Book Return</span></a>
+                            <a class="nav-link menu-title link-nav {{routeActive('book-return.create')}}" href="{{ route('book-return.create') }}"><i data-feather="log-in"></i><span>Book Return</span></a>
                         </li>
 
                         <li class="sidebar-main-title">

@@ -52,16 +52,9 @@
                                         @enderror
                                     </div>
                                     <div class="mb-3 col-sm-6">
-                                        <label for="availStock">Available Stock</label>
-                                        <input class="form-control" id="availStock" type="number" min="0" name="avail_stock" value="{{ old('avail_stock') }}">
-                                        @error('avail_stock')
-                                            <div class="invalid-feedback" style="display: block !important">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3 col-sm-6">
-                                        <label for="inputAddress5">Total Stock</label>
-                                        <input class="form-control" id="inputAddress5" type="number" min="0" name="total_stock" value="{{ old('total_stock') }}">
-                                        @error('total_stock')
+                                        <label for="isbn">ISBN</label>
+                                        <input class="form-control" id="isbn" type="number" min="0" name="isbn" value="{{ old('isbn') }}">
+                                        @error('isbn')
                                             <div class="invalid-feedback" style="display: block !important">{{ $message }}</div>
                                         @enderror
                                     </div>

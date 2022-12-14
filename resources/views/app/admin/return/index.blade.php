@@ -20,7 +20,6 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h5>Book Return</h5>
-                    <a class="btn btn-primary" href="{{ route('book-return.create') }}">Add</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

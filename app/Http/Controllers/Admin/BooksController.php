@@ -49,8 +49,7 @@ class BooksController extends Controller
                 'author' => $request->author,
                 'category' => $request->category,
                 'year' => $request->year,
-                'avail_stock' => $request->avail_stock,
-                'total_stock' => $request->total_stock,
+                'isbn' => $request->isbn
             ];
 
             Book::Create($data);
@@ -114,8 +113,7 @@ class BooksController extends Controller
                 'author' => $request->author,
                 'category' => $request->category,
                 'year' => $request->year,
-                'avail_stock' => $request->avail_stock,
-                'total_stock' => $request->total_stock,
+                'isbn' => $request->isbn
             ];
 
             Book::where('id', $book->id)->update($data);
