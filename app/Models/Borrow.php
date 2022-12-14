@@ -11,7 +11,7 @@ class Borrow extends Model
 
     protected $guarded = [];
 
-    public static function borrowerData($borrowerId){
+    public static function getBorrow($borrowerId){
         return static::where('id', $borrowerId)->first();
     }
 

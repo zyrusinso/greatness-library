@@ -108,5 +108,15 @@
         "searching": false,
     });
 </script>
+
+@error('success')
+    <script>
+        Swal.fire(
+            'Returned!',
+            '{{ $message }}',
+            'success'
+        )
+    </script>
+@enderror
 @endpush
 @endsection

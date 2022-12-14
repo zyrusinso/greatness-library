@@ -16,6 +16,7 @@ class CreateReturnBooksTable extends Migration
         Schema::create('return_books', function (Blueprint $table) {
             $table->id();
             $table->string('book_id')->nullable();
+            $table->string('borrow_id')->nullable();
             $table->string('user_id')->nullable();
             $table->timestamps();
         });

@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Throwable;
+use App\Models\User;
 use App\Models\Borrow;
 use App\Models\ReturnBook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
 class ReturnController extends Controller
@@ -28,9 +33,16 @@ class ReturnController extends Controller
      */
     public function create()
     {
+        $data = new Collection();
         $borrows = Borrow::where('user_id', auth()->id())->get();
+        
+        foreach($borrows as $item){
+            if(!ReturnBook::where('borrow_id', $item->id)->first()){
+                $data->push($item);
+            }
+        }
 
-        return view('app.admin.return.create', compact('borrows'));
+        return view('app.admin.return.create', ['borrows' => $data]);
     }
 
     /**
@@ -41,19 +53,26 @@ class ReturnController extends Controller
      */
     public function store(Request $request)
     {
+        $borrow = Borrow::where('id', $request->borrow)->first();
+
         try {
             DB::beginTransaction();
 
             $data = [
-                'title' => $request->title,
-                'author' => $request->author,
-                'category' => $request->category,
-                'year' => $request->year,
-                'avail_stock' => $request->avail_stock,
-                'total_stock' => $request->total_stock,
+                'book_id' => $borrow->book_id,
+                'borrow_id' => $borrow->id,
+                'user_id' => auth()->id()
             ];
 
-            Book::Create($data);
+            ReturnBook::create($data);
+
+            $borrow->update(['status' => 'Returned']);
+
+            if(\Carbon\Carbon::parse($borrow->due_date) <= now()){
+                $fined = (now()->diffInDays($borrow->due_date)+1)*3;
+                $user = User::where('id', auth()->id())->first();
+                $user->update(['balance' => $fined+$user->balance]);
+            }
 
             DB::commit();
 
@@ -70,7 +89,8 @@ class ReturnController extends Controller
         if($request->has('another')){
             return redirect()->back();
         }
-        return redirect(route('books.index'));
+
+        return redirect(route('book-return.create'))->withErrors(['success' => 'Successfully returned the book!']);
     }
 
     /**

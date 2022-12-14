@@ -46,9 +46,14 @@ class BorrowBooksController extends Controller
         $request->validated();
 
         $borrower = Borrow::where('user_id', auth()->id())->where('status', 'Lended')->get();
+        $alreadyBorrowed = Borrow::where('user_id', auth()->id())->where('status', 'Lended')->where('book_id', $request->book)->first();
         
         if(count($borrower) >= 3){
             return redirect()->back()->withErrors(['error' => 'Maximum borrowed book has reached!']);
+        }
+
+        if($alreadyBorrowed){
+            return redirect()->back()->withErrors(['error' => 'Book is already borrowed!']);
         }
 
         try {

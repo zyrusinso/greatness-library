@@ -27,31 +27,20 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Full Name</th>
                                     <th>Title</th>
-                                    <th>Author</th>
-                                    <th>Category</th>
-                                    <th>Year</th>
-                                    <th>Avail Stock</th>
-                                    <th>Action</th>
+                                    <th>Borrowing Date</th>
+                                    <th>Due Date</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($returns as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->title }}</td>
-                                        <td>{{ $item->author }}</td>
-                                        <td>{{ \App\Models\BookCategory::getCategoryTitle($item->category) }}</td>
-                                        <td>{{ $item->year }}</td>
-                                        <td>{{ $item->avail_stock }}</td>
-                                        <td width="30%">
-                                            <a href="{{ route('book-return.show', $item->id) }}" class="btn btn-secondary">Edit</a>
-                                            <a href="#" class="btn btn-danger deleteBtn" data-id="{{ $item->id }}" onclick="deleteData(this)">Delete</a>
-                                        </td>
-                                        <form id="deleteDataForm{{ $item->id }}" action="{{ route('book-return.destroy', $item->id) }}" method="POST" class="d-none" onsubmit="event.preventDefault();">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
+                                        <td>{{ App\Models\User::getUser($item->user_id)->fname }} {{ App\Models\User::getUser($item->user_id)->lname }}</td>
+                                        <td>{{ App\Models\Book::getBook($item->book_id)->title }}</td>
+                                        <td>{{ Carbon\Carbon::parse(App\Models\Borrow::getBorrow($item->borrow_id)->created_at)->format('M j Y') }}</td>
+                                        <td>{{ Carbon\Carbon::parse(App\Models\Borrow::getBorrow($item->borrow_id)->due_date)->format('M j Y') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

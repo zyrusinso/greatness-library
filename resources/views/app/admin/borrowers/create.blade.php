@@ -59,14 +59,14 @@
                                     </div>
                                     <div class="mb-3 col-sm-6">
                                         <label for="date_of_birth">Date of Birth</label>
-                                        <input class="form-control" id="date_of_birth" type="date" value="{{ old('date_of_birth') }}" max="{{ new DateTime()->format('Y-m-d') }}" name="date_of_birth">
+                                        <input class="form-control" id="date_of_birth" type="date" value="{{ old('date_of_birth') }}" max="2022-01-01" name="date_of_birth">
                                         @error('date_of_birth')
                                             <div class="invalid-feedback" style="display: block !important">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3 col-sm-6">
                                         <label for="course">Course</label>
-                                        <input class="form-control" id="course" type="text" value="{{ old('course') }}">
+                                        <input class="form-control" id="course" type="text" value="{{ old('course') }}" name="course">
                                         @error('course')
                                             <div class="invalid-feedback" style="display: block !important">{{ $message }}</div>
                                         @enderror
