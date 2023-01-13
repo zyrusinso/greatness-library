@@ -14890,3 +14890,21 @@ Stack trace:
 #49 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\server.php(21): require_once('G:\\\\xampp\\\\htdocs...')
 #50 {main}
 "} 
+[2022-12-18 12:21:40] local.ERROR: Opis\Closure\SerializableClosure implements the Serializable interface, which is deprecated. Implement __serialize() and __unserialize() instead (or in addition, if support for old PHP versions is necessary) {"exception":"[object] (ErrorException(code: 0): Opis\\Closure\\SerializableClosure implements the Serializable interface, which is deprecated. Implement __serialize() and __unserialize() instead (or in addition, if support for old PHP versions is necessary) at G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\vendor\\opis\\closure\\src\\SerializableClosure.php:18)
+[stacktrace]
+#0 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\vendor\\opis\\closure\\src\\SerializableClosure.php(18): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(8192, 'Opis\\\\Closure\\\\Se...', 'G:\\\\xampp\\\\htdocs...', 18)
+#1 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\vendor\\composer\\ClassLoader.php(571): include('G:\\\\xampp\\\\htdocs...')
+#2 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\vendor\\composer\\ClassLoader.php(428): Composer\\Autoload\\includeFile('G:\\\\xampp\\\\htdocs...')
+#3 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('Opis\\\\Closure\\\\Se...')
+#4 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\vendor\\laravel\\framework\\src\\Illuminate\\Encryption\\EncryptionServiceProvider.php(45): class_exists('Opis\\\\Closure\\\\Se...')
+#5 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\vendor\\laravel\\framework\\src\\Illuminate\\Encryption\\EncryptionServiceProvider.php(19): Illuminate\\Encryption\\EncryptionServiceProvider->registerOpisSecurityKey()
+#6 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(672): Illuminate\\Encryption\\EncryptionServiceProvider->register()
+#7 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\ProviderRepository.php(75): Illuminate\\Foundation\\Application->register(Object(Illuminate\\Encryption\\EncryptionServiceProvider))
+#8 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(649): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#9 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#10 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#11 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(310): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#12 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(127): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#13 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#14 {main}
+"} 

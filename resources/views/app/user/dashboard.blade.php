@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/owlcarousel.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/prism.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/whether-icon.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
 @endpush
 @section('content')
 @component('app.components.admin_breadcrumb')
