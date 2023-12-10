@@ -14908,3 +14908,49 @@ Stack trace:
 #13 G:\\xampp\\htdocs\\Laravel\\greatnessLibrary\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #14 {main}
 "} 
+[2023-12-10 17:06:56] local.ERROR: Command "migrate:seeder" is not defined.
+
+Did you mean one of these?
+    db:seed
+    make:seeder
+    migrate
+    migrate:fresh
+    migrate:install
+    migrate:refresh
+    migrate:reset
+    migrate:rollback
+    migrate:status {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"migrate:seeder\" is not defined.
+
+Did you mean one of these?
+    db:seed
+    make:seeder
+    migrate
+    migrate:fresh
+    migrate:install
+    migrate:refresh
+    migrate:reset
+    migrate:rollback
+    migrate:status at /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/symfony/console/Application.php:682)
+[stacktrace]
+#0 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/symfony/console/Application.php(255): Symfony\\Component\\Console\\Application->find()
+#1 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/symfony/console/Application.php(167): Symfony\\Component\\Console\\Application->doRun()
+#2 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/laravel/framework/src/Illuminate/Console/Application.php(92): Symfony\\Component\\Console\\Application->run()
+#3 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#4 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#5 {main}
+"} 
+[2023-12-10 17:07:07] local.ERROR: The "--seeder" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--seeder\" option does not exist. at /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/symfony/console/Input/ArgvInput.php:213)
+[stacktrace]
+#0 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/symfony/console/Input/ArgvInput.php(142): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/symfony/console/Input/ArgvInput.php(76): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#3 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/symfony/console/Command/Command.php(258): Symfony\\Component\\Console\\Input\\Input->bind()
+#4 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/laravel/framework/src/Illuminate/Console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#5 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/symfony/console/Application.php(978): Illuminate\\Console\\Command->run()
+#6 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/symfony/console/Application.php(295): Symfony\\Component\\Console\\Application->doRunCommand()
+#7 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/symfony/console/Application.php(167): Symfony\\Component\\Console\\Application->doRun()
+#8 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/laravel/framework/src/Illuminate/Console/Application.php(92): Symfony\\Component\\Console\\Application->run()
+#9 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#10 /home/zyrus/Desktop/Activity/laravel/zyrus/lib-sys/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 {main}
+"} 
